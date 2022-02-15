@@ -1,0 +1,6 @@
+**/*.pdf
+**/*.RDS
+data_example/data_construction/build_data.R
+**/*.Rhistory
+
+
