@@ -9,12 +9,7 @@ library(HVTN505)
 source("helper_functions.R")
 
 # Create plots for each of the biomarker groups
-# all_res <- readRDS("combined_results.rds")
-# all_res <- readRDS("../data_analysis/all_results.rds")
-# just_FxAb <- readRDS("../data_analysis/FxAb_newer.rds")
 all_res <- readRDS("../../cluster_helper_functions/data_example/all_results.rds")
-just_FxAb <- readRDS("../../cluster_helper_functions/data_example/FxAb_large.rds")
-all_res$`Fx Ab` <- just_FxAb$`Fx Ab`
 
 ## Construct a table of the p-values.
 all_results <- all_res %>% purrr::map(
@@ -22,7 +17,6 @@ all_results <- all_res %>% purrr::map(
     p_est <- y$lp$param_ests
     p_se <- y$lp$param_sds / sqrt(150) # sample size
     pval <- min(pnorm(-1 * abs(p_est / p_se))) * length(p_se)
-    y$bonf <- list("pvalue" = pval)
     return(y)
   }
 )
@@ -41,7 +35,7 @@ pval_tab %>% mutate(
 ) %>%
   relocate(
     `Biomarker Group`, l2, max, lp, ssq
-  ) %>% select(-bonf) %>%
+  ) %>%
   knitr::kable(format = "latex", booktabs = TRUE) %>%
   kableExtra::kable_styling(latex_options = "striped",
                             stripe_color = "#EEEEEE") %>%

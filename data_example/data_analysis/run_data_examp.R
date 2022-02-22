@@ -3,6 +3,7 @@ all_data <- readRDS("../data_construction/all_data.RDS")
 
 # Read in testing function ------------------------------------------------
 source("helper_funs.R")
+library(amp)
 
 ## Run the set of tests for each of the
 ## biomarkers of interest.  This could take
