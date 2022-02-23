@@ -7,7 +7,7 @@ run_test <- function(vaccinees, num_mc_pval = 100, num_nrm_dst = 100 ) {
   ## Running the adaptive lp test:
   cat("running lp test ... \n")
   lp_control <- amp::test.control(
-    f_cv_summary = mean, more_info = TRUE,
+    f_cv_summary = mean,
     n_peld_mc_samples = num_nrm_dst, nrm_type = "lp", nrmlize = FALSE,
     perf_meas = "mag", pos_lp_norms = c(1, 2, 4, 6, 8, 10, "max"),
     test_stat_func = "mag", ld_est_meth = "par_boot",

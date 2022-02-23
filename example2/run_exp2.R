@@ -38,7 +38,7 @@ print(data.frame(set))
 this_control <- test.control(
   pos_lp_norms = norms_chosen, ld_est_meth = set$ld_meth,
   n_peld_mc_samples = set$num_mc_samp, nrm_type = norm_type,
-  ts_ld_bs_samp = set$num_mc_samp, more_info = "all",
+  ts_ld_bs_samp = set$num_mc_samp,
   perf_meas = set$gam_meas
 )
 
