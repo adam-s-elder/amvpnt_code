@@ -83,13 +83,16 @@ make_data <- function(group_of_vars = "IgG3", exclude = "") {
   ## probability of being sampled (all cases are sampled).
   weights <- dat.505$wt
   Y <- dat.505$case
+  cc_cat <- dat.505$cc_fullstrata
   ## check the above statement :
   ## dat.505[1:20, c("wt", "case")]
 
   ## Only keep data those who received treatment.
   vaccinees <- cbind.data.frame("y" = Y,
                                 "wt" = weights,
+                                "cat" = cc_cat,
                                 "w" = X) %>%
     filter(w.trt == 1) %>% dplyr::select(-w.trt)
+
   return(vaccinees)
 }
